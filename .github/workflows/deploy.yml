@@ -6,7 +6,6 @@ jobs:
   aws_cdk:
     runs-on: ubuntu-latest
     env: 
-      working-directory: ./fargate-cdk/cdk
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -20,8 +19,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: 'ap-southeast-2'
       - name: Install dependencies
+        working-directory: ./fargate-cdk/cdk
         run: yarn
       - name: Synth stack
+        working-directory: ./fargate-cdk/cdk
         run: yarn cdk synth
       - name: Deploy stack
+        working-directory: ./fargate-cdk/cdk
         run: yarn cdk deploy --all --require-approval never
