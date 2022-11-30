@@ -5,7 +5,6 @@ on: [push]
 jobs:
   aws_cdk:
     runs-on: ubuntu-latest
-    env: 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
